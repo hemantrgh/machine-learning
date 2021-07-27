@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Dictionary</title>
+    <style>
+      .button {
+        border: none;
+        color: white;
+        padding: 10px 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+      }
+      
+      .button1 {
+        background-color: white;
+        color: black;
+        border: 2px solid #5a6cb9;
+      }
+      
+      .button1:hover {
+        background-color: #302a83;
+        color: white;
+      }
+      
+      </style>
+</head>
+
+<body>
+<h1>Welcome to Dictionary app</h1>
+
+<form action="{{ url_for('index') }}" method="POST">
+  <label for="input_txt">Enter your text:</label>
+  <input type="text" id="input_txt" name="input_txt"><br><br>
+  
+  <p id=process_input><input class = "button button1" type = "submit" value = "Submit" for='input_txt' /></p>
+  
+  <br><br>
+    {% if result %}
+       <h2>Synonyms to your input are: </h2>
+       <ul>
+       {% for item in result %}
+           <li> {{item}} </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if error %}
+        <h2> {{ error }} </h2>
+    {% endif %}
+</form> 
+</body>
+</html>
